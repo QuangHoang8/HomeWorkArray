@@ -1,0 +1,299 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      //         Bài 1: Viết chương trình JavaScript để lấy một phần tử ngẫu nhiên từ một mảng
+      // sample([3, 7, 9, 11]) => 3
+      // sample([3, 7, 9, 11]) => 9
+
+      function randomSample(arr) {
+        return arr[Math.floor(Math.random() * arr.length)];
+      }
+      console.log("bài 1: " + randomSample([3, 7, 9, 11]));
+
+      //   Bài 2: Viết chương trình đổi chỗ ngẫu nhiên vị trí của các phần tử trong mảng
+
+      function changeRandom(arr) {
+        var arr1 = [];
+        while (arr.length > 0) {
+          var i = Math.floor(Math.random() * arr.length);
+          arr1.push(arr[i]);
+          arr.splice(i, 1);
+        }
+        return arr1;
+      }
+      console.log("bài 2: ");
+      console.log(changeRandom([1, 2, 5, 6]));
+
+      //      Bài 3: Viết chương trình JavaScript để lấy một mảng các phần tử xuất hiện trong cả hai mảng
+      // similarity([1, 2, 3], [1, 2, 4]) => [1,2]
+
+      function similarity(arr1, arr2) {
+        var arr = [];
+        for (var i = 0; i < arr1.length; i++) {
+          for (var j = 0; j < arr2.length; j++) {
+            if (arr1[i] == arr2[j]) {
+              arr.push(arr2[j]);
+            }
+          }
+        }
+        return arr;
+      }
+      console.log("bài 3");
+      console.log(similarity([1, 2, 3], [1, 2, 4]));
+
+      //       Bài 4: Viết một chương trình JavaScript để lấy sự phần tử không xuất hiện ở cả 2 mảng
+      // symmetricDifference([1, 2, 3], [1, 2, 4]) => [3,4]
+
+      function symmetricDifference(arr1, arr2) {
+        var arr = [];
+        var flag = true;
+        for (var i = 0; i < arr1.length; i++) {
+          for (var j = 0; j < arr2.length; j++) {
+            if (arr1[i] == arr2[j]) {
+              flag = false;
+              break;
+            }
+          }
+          if (flag) {
+            arr.push(arr1[i]);
+          } else {
+            flag = true;
+          }
+        }
+        for (var i = 0; i < arr2.length; i++) {
+          for (var j = 0; j < arr1.length; j++) {
+            if (arr2[i] == arr1[j]) {
+              flag = false;
+              break;
+            }
+          }
+          if (flag) {
+            arr.push(arr2[i]);
+          } else {
+            flag = true;
+          }
+        }
+        return arr;
+      }
+      console.log("bài 4");
+      console.log(symmetricDifference([1, 2, 3], [1, 2, 4, 5]));
+
+      //       Bài 5: Viết function lấy tất cả các phần tử không trùng nhau trong cả 2 mảng
+      // union([1, 2, 3], [4, 3, 2]) => [1,2,3,4]
+      // union([1, 2, 3], [1, 2, 3]) => [1,2,3]
+
+      function union(arr1, arr2) {
+        var arrS = arr1.concat(arr2);
+        var arrR = [arrS[0]];
+        var flag = true;
+        for (var i = 1; i < arrS.length; i++) {
+          for (var j = 0; j < arrR.length; j++) {
+            if (arrS[i] == arrR[j]) {
+              flag = false;
+              break;
+            }
+          }
+          if (flag) {
+            arrR.push(arrS[i]);
+          } else {
+            flag = true;
+          }
+        }
+        return arrR;
+      }
+
+      console.log("bài 5: ", union([1, 2, 3], [4, 3, 2]));
+
+      //       Bài 6: Viết chương trình JavaScript để tạo mã màu HEX ngẫu nhiên.
+      // random_hex_color_code()
+
+      function random_hex_color_code() {
+        var color = [
+          "0",
+          "1",
+          "2",
+          "3",
+          "4",
+          "5",
+          "6",
+          "7",
+          "8",
+          "9",
+          "A",
+          "B",
+          "C",
+          "D",
+          "E",
+          "F",
+        ];
+        return (
+          "#" +
+          randomSample(color) +
+          randomSample(color) +
+          randomSample(color) +
+          randomSample(color) +
+          randomSample(color) +
+          randomSample(color)
+        );
+      }
+      console.log("bài 6: " + random_hex_color_code());
+
+      //         Bài 7: Viết một chương trình JavaScript trả về một tập hợp con của một chuỗi.
+      //   sub_String("dog") => ["d","do","dog","o","og","g"]
+      function sub_String(str) {
+        var arr = str.split("");
+        var arrR = [];
+        var k = 0;
+        for (var i = 0; i < arr.length; i++) {
+          arrR.push(arr[i]);
+          k += 1;
+          for (var j = k; j < arr.length; j++) {
+            arrR.push(arrR[arrR.length - 1] + arr[j]);
+          }
+        }
+        return arrR;
+      }
+      console.log("bài 7");
+      console.log(sub_String("dogk"));
+
+      //   Bài 8: Kiểm tra mảng xem có phải mảng tăng dần hay không
+      function checkUp(arr) {
+        for (var i = 0; i < arr.length; i++) {
+          if (arr[i] > arr[i + 1]) {
+            return false;
+          }
+        }
+        return true;
+      }
+      console.log("bai 8: " + checkUp([1, 3, 5, 6, 6]));
+
+      //   Bài 9: Kiểm tra mảng xem có phải mảng số lẻ giảm dần hay không
+
+      function checkOddDown(arr) {
+        for (var i = 0; i < arr.length; i++) {
+          if (arr[i] % 2 == 0 || arr[i] < arr[i + 1]) {
+            return false;
+          }
+        }
+        return true;
+      }
+      console.log("bài 9: " + checkOddDown([1, 3, 5, 9, 7]));
+
+      //   Bài 10: Cho 1 số nguyên, hãy viết hàm sắp xếp lại các chữ số trong số nguyên đó sao cho ra 1 số nhỏ nhất có thể (không tính số 0 đầu tiên). Ví dụ với tham số 53751 thì kết quả là 13557.
+      function sortNumber(x) {
+        var a = String(x).split("");
+        a = a.sort(function (a, b) {
+          return a - b;
+        });
+        if (a[0] == 0) {
+          a[0] = a[1];
+          a[1] = 0;
+        }
+        return a.join("");
+      }
+
+      console.log("bài 10: " + sortNumber(40391));
+
+      //         Bài 11: Viết chương trình JavaScript để tạo mã màu RBG ngẫu nhiên.
+      //   random_rgb_color_code()
+
+      function random_rgb_color_code() {
+        return (
+          "rgb(" +
+          Math.floor(Math.random() * 256) +
+          "," +
+          Math.floor(Math.random() * 256) +
+          "," +
+          Math.floor(Math.random() * 256) +
+          ")"
+        );
+      }
+      console.log("bài 11: " + random_rgb_color_code());
+
+      //       Bài 12: Viết chương trình remove những phần tử bị trùng nhau trong mảng
+
+      // removeDuplicates([1,2,5,2,6,2,5]) => [1,2,5,6]
+
+      function removeDuplicates(arr) {
+        var obj = {};
+        for (var i = 0; i < arr.length; i++) {
+          obj[arr[i]] = "";
+        }
+        var arr1 = Object.keys(obj);
+        for (var i = 0; i < arr1.length; i++) {
+          arr1[i] = Number(arr1[i]);
+        }
+        return arr1;
+      }
+      console.log("bài 12 cách I:");
+      console.log(removeDuplicates([1, 2, 5, 2, 6, 2, 5]));
+      function removeDuplicates2(arr) {
+        var arr1 = [];
+        for (var i = 0; i < arr.length; i++) {
+          if (i == arr.lastIndexOf(arr[i])) {
+            arr1.push(arr[i]);
+          }
+        }
+        return arr1;
+      }
+      console.log("bài 12 cách II:");
+      console.log(removeDuplicates2([1, 2, 5, 2, 6, 2, 5]));
+
+      function removeDuplicates3(arr) {
+        arr.sort(function (a, b) {
+          return a - b;
+        });
+        var arr1 = [arr[0]];
+        for (var i = 1; i < arr.length; i++) {
+          if (arr[i] > arr[i - 1]) {
+            arr1.push(arr[i]);
+          }
+        }
+        return arr1;
+      }
+      console.log("bài 12 cách III: ");
+      console.log(removeDuplicates3([1, 2, 5, 2, 6, 2, 5]));
+
+      // Bài 13: Viết chương trình JavaScript để tìm các giá trị trùng lặp trong một mảng.
+
+      // findDuplicates([1,2,5,2,6,2,5]) => [2,5]
+
+      function findDuplicates1(arr) {
+        var obj = {};
+        for (var i = 0; i < arr.length; i++) {
+          if (obj.hasOwnProperty(arr[i])) {
+            obj[arr[i]] += 1;
+          } else {
+            obj[arr[i]] = 1;
+          }
+        }
+        var arr1 = [];
+        for (var i = 0; i < Object.keys(obj).length; i++) {
+          if (obj[Object.keys(obj)[i]] != 1) {
+            arr1.push(Object.keys(obj)[i]);
+          }
+        }
+        return arr1;
+      }
+
+      console.log("bai 13 cach I: " + findDuplicates1([1, 2, 5, 2, 6, 2, 5]));
+
+      function findDuplicates2(arr) {
+        var arr1 = [];
+        for (var i = 0; i < arr.length; i++) {
+          if (i != arr.lastIndexOf(arr[i]) && i == arr.indexOf(arr[i])) {
+            arr1.push(arr[i]);
+          }
+        }
+        return arr1;
+      }
+
+      console.log("bai 13 cach II: " + findDuplicates2([1, 2, 5, 2, 6, 2, 5]));
+    </script>
+  </body>
+</html>
